@@ -12,7 +12,7 @@
   --text: #ecf0f1;
   --text-secondary: #bdc3c7;
   --checkbox-bg: #8e44ad;
-  
+
   /* Dark mode - using lighter, softer colors */
   --dark-bg-gradient-1: #c9d6ff;
   --dark-bg-gradient-2: #e2e2e2;
@@ -31,7 +31,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
   background: linear-gradient(135deg, var(--bg-gradient-1), var(--bg-gradient-2));
   color: var(--text);
   padding: 20px;
@@ -138,6 +138,8 @@ body.dark .daily-summary {
   background-color: rgba(255, 255, 255, 0.08);
   border-left: 4px solid var(--accent);
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .topic-group:hover {
@@ -159,6 +161,45 @@ body.dark .topic-group:hover {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.topic-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+body.dark .topic-icon {
+  background: rgba(0, 0, 0, 0.05);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.topic-icon:hover {
+  transform: scale(1.1) rotate(5deg);
+  border-color: var(--accent);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+body.dark .topic-icon:hover {
+  border-color: var(--dark-accent);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.topic-title-container {
+  display: flex;
+  align-items: center;
+  flex: 1;
 }
 
 .time-indicator {
@@ -179,10 +220,52 @@ body.dark .time-indicator {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* Category-specific colors for day mode */
+.topic-background {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 60px;
+  height: 60px;
+  opacity: 0.1;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  z-index: 1;
+  animation: float 3s ease-in-out infinite;
+}
+
+body.dark .topic-background {
+  opacity: 0.05;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Category-specific colors and icons */
 .topic-group[data-category="Core Java"] {
   background: linear-gradient(135deg, rgba(231, 76, 60, 0.15), rgba(192, 57, 43, 0.1));
   border-left-color: #e74c3c;
+}
+
+.topic-group[data-category="Core Java"] .topic-icon {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+}
+
+.topic-group[data-category="Core Java"] .topic-background::before {
+  content: "☕";
 }
 
 .topic-group[data-category="Programming"] {
@@ -190,9 +273,27 @@ body.dark .time-indicator {
   border-left-color: #ff5722;
 }
 
+.topic-group[data-category="Programming"] .topic-icon {
+  background: linear-gradient(135deg, #ff5722, #f4511e);
+  color: white;
+}
+
+.topic-group[data-category="Programming"] .topic-background::before {
+  content: "💻";
+}
+
 .topic-group[data-category="Advanced Java"] {
   background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), rgba(41, 128, 185, 0.1));
   border-left-color: #3498db;
+}
+
+.topic-group[data-category="Advanced Java"] .topic-icon {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+}
+
+.topic-group[data-category="Advanced Java"] .topic-background::before {
+  content: "🚀";
 }
 
 .topic-group[data-category="Aptitude"] {
@@ -200,9 +301,27 @@ body.dark .time-indicator {
   border-left-color: #2ecc71;
 }
 
+.topic-group[data-category="Aptitude"] .topic-icon {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  color: white;
+}
+
+.topic-group[data-category="Aptitude"] .topic-background::before {
+  content: "🧮";
+}
+
 .topic-group[data-category="Communication"] {
   background: linear-gradient(135deg, rgba(155, 89, 182, 0.15), rgba(142, 68, 173, 0.1));
   border-left-color: #9b59b6;
+}
+
+.topic-group[data-category="Communication"] .topic-icon {
+  background: linear-gradient(135deg, #9b59b6, #8e44ad);
+  color: white;
+}
+
+.topic-group[data-category="Communication"] .topic-background::before {
+  content: "💬";
 }
 
 .topic-group[data-category="HR"] {
@@ -210,9 +329,27 @@ body.dark .time-indicator {
   border-left-color: #e67e22;
 }
 
+.topic-group[data-category="HR"] .topic-icon {
+  background: linear-gradient(135deg, #e67e22, #d35400);
+  color: white;
+}
+
+.topic-group[data-category="HR"] .topic-background::before {
+  content: "👥";
+}
+
 .topic-group[data-category="Testing"] {
   background: linear-gradient(135deg, rgba(26, 188, 156, 0.15), rgba(22, 160, 133, 0.1));
   border-left-color: #1abc9c;
+}
+
+.topic-group[data-category="Testing"] .topic-icon {
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  color: white;
+}
+
+.topic-group[data-category="Testing"] .topic-background::before {
+  content: "🧪";
 }
 
 .topic-group[data-category="Mock"] {
@@ -220,9 +357,27 @@ body.dark .time-indicator {
   border-left-color: #f1c40f;
 }
 
+.topic-group[data-category="Mock"] .topic-icon {
+  background: linear-gradient(135deg, #f1c40f, #f39c12);
+  color: white;
+}
+
+.topic-group[data-category="Mock"] .topic-background::before {
+  content: "📝";
+}
+
 .topic-group[data-category="Revision"] {
   background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(44, 62, 80, 0.1));
   border-left-color: #34495e;
+}
+
+.topic-group[data-category="Revision"] .topic-icon {
+  background: linear-gradient(135deg, #34495e, #2c3e50);
+  color: white;
+}
+
+.topic-group[data-category="Revision"] .topic-background::before {
+  content: "📚";
 }
 
 /* Dark mode - keep subtle colors */
@@ -237,6 +392,11 @@ body.dark .topic-group[data-category="Mock"],
 body.dark .topic-group[data-category="Revision"] {
   background: rgba(0, 0, 0, 0.03);
   border-left-color: var(--dark-accent);
+}
+
+body.dark .topic-group .topic-icon {
+  background: var(--dark-accent) !important;
+  color: white;
 }
 
 .topic-group strong {
@@ -293,7 +453,8 @@ body.dark input[type="checkbox"] {
   accent-color: var(--dark-checkbox);
 }
 
-.toggle-dark, .reset-progress {
+.toggle-dark,
+.reset-progress {
   position: fixed;
   top: 20px;
   padding: 12px 16px;
@@ -308,12 +469,14 @@ body.dark input[type="checkbox"] {
   transition: all 0.3s ease;
 }
 
-.toggle-dark:hover, .reset-progress:hover {
+.toggle-dark:hover,
+.reset-progress:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-body.dark .toggle-dark, body.dark .reset-progress {
+body.dark .toggle-dark,
+body.dark .reset-progress {
   background: var(--dark-accent);
   color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -369,7 +532,8 @@ body.dark .progress-fill {
     font-size: 1.1rem;
   }
 
-  .toggle-dark, .reset-progress {
+  .toggle-dark,
+  .reset-progress {
     position: static;
     display: inline-block;
     margin-bottom: 15px;
@@ -380,5 +544,22 @@ body.dark .progress-fill {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+  }
+
+  .topic-title-container {
+    width: 100%;
+  }
+
+  .topic-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+    font-size: 16px;
+  }
+
+  .topic-background {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
   }
 }
