@@ -14,6 +14,19 @@ const quotes = [
   "Algorithms today, solutions tomorrow!",
 ]
 
+// Topic icons mapping (using emojis and symbols)
+const topicIcons = {
+  "Core Java": "☕",
+  Programming: "💻",
+  "Advanced Java": "🚀",
+  Aptitude: "🧮",
+  Communication: "💬",
+  HR: "👥",
+  Testing: "🧪",
+  Mock: "📝",
+  Revision: "📚",
+}
+
 // Study plan data
 const data = [
   {
@@ -427,17 +440,33 @@ function generateTimetable() {
       group.className = "topic-group"
       group.setAttribute("data-category", category)
 
+      // Add floating background element
+      const backgroundDiv = document.createElement("div")
+      backgroundDiv.className = "topic-background"
+      group.appendChild(backgroundDiv)
+
       const topicHeader = document.createElement("div")
       topicHeader.className = "topic-header"
 
+      const titleContainer = document.createElement("div")
+      titleContainer.className = "topic-title-container"
+
+      // Add topic icon with emoji
+      const icon = document.createElement("div")
+      icon.className = "topic-icon"
+      icon.textContent = topicIcons[category] || "📖"
+
       const title = document.createElement("strong")
       title.textContent = category
+
+      titleContainer.appendChild(icon)
+      titleContainer.appendChild(title)
 
       const timeIndicator = document.createElement("span")
       timeIndicator.className = "time-indicator"
       timeIndicator.textContent = `⏱️ ${topicData.time}`
 
-      topicHeader.appendChild(title)
+      topicHeader.appendChild(titleContainer)
       topicHeader.appendChild(timeIndicator)
       group.appendChild(topicHeader)
 
