@@ -633,6 +633,7 @@ function generateTimetable() {
     const dayDiv = document.createElement("div")
     dayDiv.className = "day"
     dayDiv.setAttribute("data-day-index", dayIndex)
+    dayDiv.id = `day-${dayIndex}` // Add ID for scrolling
 
     const header = document.createElement("h2")
     header.innerHTML = `${item.day} <span>➕</span>`
@@ -757,6 +758,17 @@ function generateTimetable() {
       // Then toggle current card
       topicsDiv.style.display = open ? "none" : "block"
       header.querySelector("span").textContent = open ? "➕" : "➖"
+
+      // Scroll to the top of the opened day with smooth animation
+      if (!open) {
+        // Small delay to allow the content to expand first
+        setTimeout(() => {
+          dayDiv.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          })
+        }, 100)
+      }
     })
 
     dayDiv.appendChild(header)
