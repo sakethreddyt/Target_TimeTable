@@ -71,6 +71,130 @@ body.dark .motivation {
   color: var(--dark-accent);
 }
 
+/* Countdown Controls Styles */
+.countdown-controls {
+  background: var(--card-bg);
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--accent);
+  text-align: center;
+}
+
+body.dark .countdown-controls {
+  background: var(--dark-card);
+  border-color: var(--dark-accent);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.countdown-header h3 {
+  color: var(--accent);
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+body.dark .countdown-header h3 {
+  color: var(--dark-accent);
+}
+
+.countdown-header p {
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+body.dark .countdown-header p {
+  color: var(--dark-text-secondary);
+}
+
+.countdown-inputs {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.date-input {
+  padding: 12px 16px;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  background: var(--card-bg);
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: bold;
+  min-width: 200px;
+  transition: all 0.3s ease;
+}
+
+.date-input:focus {
+  outline: none;
+  border-color: var(--success);
+  box-shadow: 0 0 10px rgba(39, 174, 96, 0.3);
+}
+
+body.dark .date-input {
+  background: var(--dark-card);
+  color: var(--dark-text);
+  border-color: var(--dark-accent);
+}
+
+body.dark .date-input:focus {
+  border-color: var(--dark-accent);
+  box-shadow: 0 0 10px rgba(149, 117, 205, 0.3);
+}
+
+.countdown-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  min-width: 150px;
+}
+
+.start-btn {
+  background: var(--success);
+  color: white;
+}
+
+.start-btn:hover {
+  background: #219a52;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.stop-btn {
+  background: #e74c3c;
+  color: white;
+}
+
+.stop-btn:hover {
+  background: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark .start-btn {
+  background: var(--dark-accent);
+}
+
+body.dark .start-btn:hover {
+  background: var(--dark-text);
+}
+
+body.dark .stop-btn {
+  background: #e57373;
+}
+
+body.dark .stop-btn:hover {
+  background: #ef5350;
+}
+
 .day {
   background-color: var(--card-bg);
   margin: 20px 0;
@@ -115,9 +239,102 @@ body.dark .day h2 {
   padding-top: 10px;
 }
 
+.countdown {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 auto 15px; /* auto for horizontal centering */
+  padding: 10px 20px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  width: fit-content; /* or you can use max-width */
+  max-width: 300px;   /* optional: limit how wide it can be */
+}
+
+
+body.dark .countdown {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.countdown-normal {
+  color: var(--success);
+  border: 2px solid var(--success);
+}
+
+.countdown-warning {
+  color: #f39c12;
+  border: 2px solid #f39c12;
+  animation: pulse-warning 2s infinite;
+}
+
+.countdown-urgent {
+  color: #e74c3c;
+  border: 2px solid #e74c3c;
+  animation: pulse-urgent 1s infinite;
+}
+
+.countdown-today {
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  background: rgba(142, 68, 173, 0.2);
+  animation: pulse-today 1.5s infinite;
+}
+
+body.dark .countdown-normal {
+  color: var(--dark-accent);
+  border-color: var(--dark-accent);
+}
+
+body.dark .countdown-warning {
+  color: #ffb74d;
+  border-color: #ffb74d;
+}
+
+body.dark .countdown-urgent {
+  color: #e57373;
+  border-color: #e57373;
+}
+
+body.dark .countdown-today {
+  color: var(--dark-accent);
+  border-color: var(--dark-accent);
+  background: rgba(149, 117, 205, 0.2);
+}
+
+@keyframes pulse-warning {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes pulse-urgent {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes pulse-today {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
 .daily-summary {
   background-color: rgba(255, 255, 255, 0.1);
-  padding: 12px;
+  padding: 15px;
   border-radius: 8px;
   margin-bottom: 15px;
   text-align: center;
@@ -202,12 +419,45 @@ body.dark .topic-icon:hover {
   flex: 1;
 }
 
+.topic-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.notes-btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.notes-btn:hover {
+  background: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+body.dark .notes-btn {
+  background: var(--dark-accent);
+}
+
+body.dark .notes-btn:hover {
+  background: var(--dark-text);
+}
+
 .time-indicator {
-  display: inline-block;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.15);
   color: var(--text);
-  padding: 4px 10px;
-  border-radius: 15px;
+  padding: 8px 12px;
+  border-radius: 8px;
   font-size: 0.8rem;
   font-weight: bold;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -253,7 +503,235 @@ body.dark .topic-background {
   }
 }
 
-/* Category-specific colors and icons */
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background-color: var(--card-bg);
+  margin: 5% auto;
+  padding: 0;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+body.dark .modal-content {
+  background-color: var(--dark-card);
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  background: var(--accent);
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+body.dark .modal-header {
+  background: var(--dark-accent);
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.edit-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.edit-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.close {
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close:hover {
+  transform: scale(1.1);
+  opacity: 0.7;
+}
+
+.modal-body {
+  padding: 20px;
+  max-height: 60vh;
+  overflow-y: auto;
+  color: var(--text);
+}
+
+body.dark .modal-body {
+  color: var(--dark-text);
+}
+
+/* Edit Mode Styles */
+#notesEditor {
+  width: 100%;
+  height: 400px;
+  padding: 15px;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  background: var(--card-bg);
+  color: var(--text);
+  font-family: "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+body.dark #notesEditor {
+  background: var(--dark-card);
+  color: var(--dark-text);
+  border-color: var(--dark-accent);
+}
+
+.edit-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.save-btn,
+.cancel-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.save-btn {
+  background: var(--success);
+  color: white;
+}
+
+.save-btn:hover {
+  background: #219a52;
+  transform: translateY(-1px);
+}
+
+.cancel-btn {
+  background: #e74c3c;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background: #c0392b;
+  transform: translateY(-1px);
+}
+
+/* Notes Content Styles */
+.notes-section {
+  margin-bottom: 25px;
+  padding: 15px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid var(--accent);
+}
+
+body.dark .notes-section {
+  background: rgba(0, 0, 0, 0.02);
+  border-left-color: var(--dark-accent);
+}
+
+.notes-section h3 {
+  color: var(--accent);
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+body.dark .notes-section h3 {
+  color: var(--dark-accent);
+}
+
+.notes-section h4 {
+  color: var(--success);
+  margin: 15px 0 8px 0;
+  font-size: 1rem;
+}
+
+body.dark .notes-section h4 {
+  color: var(--dark-accent);
+}
+
+.notes-section p {
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.notes-section ul {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.notes-section li {
+  margin-bottom: 5px;
+  line-height: 1.5;
+}
+
+.code-block {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 15px;
+  margin: 10px 0;
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+body.dark .code-block {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Category-specific colors for day mode */
 .topic-group[data-category="Core Java"] {
   background: linear-gradient(135deg, rgba(231, 76, 60, 0.15), rgba(192, 57, 43, 0.1));
   border-left-color: #e74c3c;
@@ -495,18 +973,6 @@ body.dark .reset-progress {
   background: #e57373;
 }
 
-.countdown {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  text-align: right;
-  margin-bottom: 10px;
-  font-weight: 500;
-}
-
-body.dark .countdown {
-  color: var(--dark-text-secondary);
-}
-
 /* Progress indicator */
 .progress-bar {
   height: 8px;
@@ -561,5 +1027,35 @@ body.dark .progress-fill {
     width: 40px;
     height: 40px;
     font-size: 18px;
+  }
+
+  .modal-content {
+    width: 95%;
+    margin: 2% auto;
+    max-height: 90vh;
+  }
+
+  .modal-body {
+    max-height: 70vh;
+  }
+
+  .modal-actions {
+    gap: 10px;
+  }
+
+  .edit-btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  .countdown-inputs {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .date-input,
+  .countdown-btn {
+    width: 100%;
+    max-width: 300px;
   }
 }
