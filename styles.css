@@ -37,6 +37,7 @@ body {
   padding: 20px;
   transition: background 0.5s ease, color 0.5s ease;
   min-height: 100vh;
+  scroll-behavior: smooth;
 }
 
 body.dark {
@@ -204,6 +205,7 @@ body.dark .stop-btn:hover {
   transition: all 0.3s ease;
   border-left: 5px solid var(--card-border);
   transform: translateY(0);
+  scroll-margin-top: 100px; /* Add scroll margin for smooth scrolling */
 }
 
 .day:hover {
@@ -249,12 +251,7 @@ body.dark .day h2 {
   background: rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
   width: fit-content; /* or you can use max-width */
-  max-width: 300px;   /* optional: limit how wide it can be */
-}
-
-
-body.dark .countdown {
-  background: rgba(0, 0, 0, 0.1);
+  max-width: 300px; /* optional: limit how wide it can be */
 }
 
 .countdown-normal {
@@ -931,10 +928,51 @@ body.dark input[type="checkbox"] {
   accent-color: var(--dark-checkbox);
 }
 
-.toggle-dark,
+/* Button Positioning - Instructions on LEFT side */
+.instructions-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px; /* Moved to LEFT side */
+  padding: 12px 16px;
+  background: chocolate;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 999;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-family: "Segoe UI", sans-serif;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .reset-progress {
   position: fixed;
   top: 20px;
+  right: 170px;
+  padding: 12px 16px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 999;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.toggle-dark {
+  position: fixed;
+  top: 20px;
+  right: 20px;
   padding: 12px 16px;
   background: var(--accent);
   color: white;
@@ -945,14 +983,29 @@ body.dark input[type="checkbox"] {
   font-weight: bold;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
+  font-size: 14px;
+  font-family: "Segoe UI", sans-serif;
 }
 
 .toggle-dark:hover,
-.reset-progress:hover {
+.reset-progress:hover,
+.instructions-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
+.instructions-btn:hover {
+  background: #c8661a;
+  text-decoration: none;
+  color: white;
+}
+
+.instructions-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark mode styling */
 body.dark .toggle-dark,
 body.dark .reset-progress {
   background: var(--dark-accent);
@@ -960,17 +1013,155 @@ body.dark .reset-progress {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.toggle-dark {
-  right: 20px;
-}
-
-.reset-progress {
-  right: 170px;
-  background: #e74c3c;
-}
-
 body.dark .reset-progress {
   background: #e57373;
+}
+
+body.dark .instructions-btn {
+  background: #d2691e;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.dark .instructions-btn:hover {
+  background: #cd853f;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive Design - Better breakpoints */
+
+/* Large tablets and small desktops */
+@media (max-width: 1024px) {
+  .instructions-btn {
+    left: 15px;
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+
+  .reset-progress {
+    right: 150px;
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+
+  .toggle-dark {
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .instructions-btn {
+    left: 10px;
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .reset-progress {
+    right: 120px;
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .toggle-dark {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+/* Small tablets and large phones */
+@media (max-width: 640px) {
+  /* Create a button container */
+  body::before {
+    content: "";
+    display: block;
+    height: 60px; /* Space for buttons */
+  }
+
+  /* Position buttons in a row at the top */
+  .instructions-btn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: calc(33.33% - 15px);
+    text-align: center;
+    justify-content: center;
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  .reset-progress {
+    position: fixed;
+    top: 10px;
+    left: calc(33.33% + 5px);
+    right: auto;
+    width: calc(33.33% - 10px);
+    text-align: center;
+    justify-content: center;
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  .toggle-dark {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    left: auto;
+    width: calc(33.33% - 15px);
+    text-align: center;
+    justify-content: center;
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  h1 {
+    margin-top: 60px; /* Add space for fixed buttons */
+    font-size: 1.8rem;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .instructions-btn,
+  .reset-progress,
+  .toggle-dark {
+    position: static;
+    display: block;
+    width: calc(100% - 20px);
+    margin: 8px 10px;
+    text-align: center;
+    justify-content: center;
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+
+  body::before {
+    display: none;
+  }
+
+  h1 {
+    margin-top: 20px;
+    font-size: 1.6rem;
+    padding: 0 10px;
+  }
+
+  .motivation {
+    padding: 0 10px;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  .instructions-btn,
+  .reset-progress,
+  .toggle-dark {
+    font-size: 13px;
+    padding: 10px 14px;
+  }
 }
 
 /* Progress indicator */
