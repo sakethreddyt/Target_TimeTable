@@ -13,6 +13,30 @@
   <div class="motivation" id="quote"></div>
   <div id="timetable"></div>
 
+  <!-- Notes Modal -->
+  <div id="notesModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">📝 Study Notes</h2>
+        <div class="modal-actions">
+          <button id="editBtn" class="edit-btn" onclick="toggleEditMode()">✏️ Edit</button>
+          <span class="close" onclick="closeNotesModal()">&times;</span>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div id="notesContent"></div>
+        <div id="editContent" style="display: none;">
+          <textarea id="notesEditor" placeholder="Add your notes here..."></textarea>
+          <div class="edit-actions">
+            <button onclick="saveNotes()" class="save-btn">💾 Save</button>
+            <button onclick="cancelEdit()" class="cancel-btn">❌ Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="notes-data.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
